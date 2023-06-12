@@ -1,0 +1,51 @@
+<h1>Lista Prenotazioni</h1>
+
+<div class="container">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Materia</th>
+        <th>Professore</th>
+        <th>Ora inizio</th>
+        <th>Ora fine</th>
+        <th>Azioni</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let prenotazione of prenotazioni">
+        <td>{{prenotazione.id}}</td>
+        <td><input class="table-input" [(ngModel)]="prenotazione.materia" /></td>
+        <td><input class="table-input" [(ngModel)]="prenotazione.professore" /></td>
+        <td><input class="table-input" [(ngModel)]="prenotazione.inizio" /></td>
+        <td><input class="table-input" [(ngModel)]="prenotazione.fine" /></td>
+        <td>
+          <button class="btn btn-primary" (click)="updatePrenotazione(prenotazione.id, prenotazione.materia, prenotazione.professore, prenotazione.inizio, prenotazione.fine)">Modifica</button>
+          <button class="btn btn-danger" (click)="deletePrenotazione(prenotazione.id)">Elimina</button>
+        </td>
+      </tr>
+    </tbody>
+    
+    
+  </table>
+</div>
+
+<h2>Aggiungi Prenotazione</h2>
+<form (ngSubmit)="addPrenotazione()">
+  <label for="materia">Materia:</label>
+  <input type="text" id="materia" [(ngModel)]="newMateria" name="materia">
+  <br>
+  <label for="professore">Professore:</label>
+  <input type="text" id="professore" [(ngModel)]="newProfessore" name="professore">
+  <br>
+  <label for="inizio">Ora inizio:</label>
+  <!--<input type="text" id="inizio" [(ngModel)]="newInizio" name="inizio">-->
+  <input matInput type="datetime-local"  [(ngModel)]="newInizio" id="inizio" name="inizio">
+  <br>
+  <label for="fine">Ora fine:</label>
+  <!--<input type="text" id="fine" [(ngModel)]="newFine" name="fine">-->
+  <input matInput type="datetime-local"  [(ngModel)]="newFine" id="fine" name="fine">
+  <br>
+  
+  <button type="submit">Aggiungi</button>
+</form>
